@@ -106,3 +106,9 @@ lifecycleScope.launch {
 ```kotlin
 timer.stop()
 ```
+
+## Demo application
+
+Very simple Jetpack Compose demo. <a href="https://github.com/raheemadamboev/timer-flow/blob/master/app-debug.apk">Download demo</a>
+
+<img src="https://github.com/raheemadamboev/timer-flow/blob/master/banner.gif" alt="Italian Trulli" width="200" height="400">
