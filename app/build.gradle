@@ -69,6 +69,9 @@ dependencies {
 
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0'
+
+    // timer flow
+    implementation 'com.github.raheemadamboev:timer-flow:1.0.2'
 }
 
 allprojects {
