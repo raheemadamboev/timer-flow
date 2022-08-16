@@ -21,25 +21,25 @@ Include below dependency in build.gradle of application and sync it:
 implementation 'com.github.raheemadamboev:timer-flow:1.0.1'
 ```
 
-*Create an object of Timer:*
+**Create an object of Timer:**
 
 ```kotlin
 val timer = Timer()
 ```
 
-*Set timer duration in milliseconds (default: 10 000):*
+**Set timer duration in milliseconds (default: 10 000):**
 
 ```kotlin
 timer.timerDuration = 5_000L
 ```
 
-*Start timer:*
+**Start timer:**
 
 ```kotlin
 timer.start()
 ```
 
-*Observe time of timer:*
+**Observe time of timer:**
 
 ```kotlin
 lifecycleScope.launch {
@@ -50,26 +50,26 @@ lifecycleScope.launch {
 }
 ```
 
-*Pause timer:*
+**Pause timer:**
 
 ```kotlin
 timer.pause()
 ```
-If you pause timer, do not forget to stop() it. Otherwise, it runs forever.
+_If you pause timer, do not forget to stop() it. Otherwise, it runs forever._
 
-*Resume timer:*
+**Resume timer:**
 
 ```kotlin
 timer.resume()
 ```
 
-*Reset timer:*
+**Reset timer:**
 
 ```kotlin
 timer.reset()
 ```
 
-*Set checkpoint time (default: 3 000) that you will get notified when it is reached. It is implemented via Kotlin Channel and received as Kotlin Flow. So you will only get notified once:*
+**Set checkpoint time (default: 3 000) that you will get notified when it is reached. It is implemented via Kotlin Channel and received as Kotlin Flow. So you will only get notified once:**
 
 ```kotlin
 timer.timerCheckpoint = 2_500L
@@ -85,7 +85,7 @@ lifecycleScope.launch {
 }
 ```
 
-*Observe timer states. It is implemented via Kotlin StateFlow so you always get the current timer state:*
+**Observe timer states. It is implemented via Kotlin StateFlow so you always get the current timer state:**
 
 ```kotlin
 lifecycleScope.launch {
@@ -101,7 +101,7 @@ lifecycleScope.launch {
 }
 ```
 
-*After finished using Timer, please do not forget to stop(). Otherwise, it won't get garbage collected!*
+**After finished using Timer, please do not forget to stop(). Otherwise, it won't get garbage collected!**
 
 ```kotlin
 timer.stop()
