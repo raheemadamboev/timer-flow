@@ -65,7 +65,7 @@ class Timer {
             _time.emit(timerDuration)
             _duration.emit(timerDuration)
             _state.emit(TimerState.Ticking)
-            _event.send(TimerEvent.Started)
+            _event.trySend(TimerEvent.Started)
 
             while (_time.value > 0L) {
                 delay(200L)
@@ -86,13 +86,13 @@ class Timer {
     private suspend fun finish() {
         stop()
         _state.emit(TimerState.Finished)
-        _event.send(TimerEvent.Finished)
+        _event.trySend(TimerEvent.Finished)
     }
 
-    private suspend fun sendCheckpoint() {
+    private fun sendCheckpoint() {
         if (sendCheckpoint) {
             sendCheckpoint = false
-            _event.send(TimerEvent.Checkpoint)
+            _event.trySend(TimerEvent.Checkpoint)
         }
     }
 
