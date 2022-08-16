@@ -18,7 +18,7 @@ allprojects {
 
 Include below dependency in build.gradle of application and sync it:
 ```groovy
-implementation 'com.github.raheemadamboev:timer-flow:1.0.1'
+implementation 'com.github.raheemadamboev:timer-flow:1.0.2'
 ```
 
 **Create an object of Timer:**
