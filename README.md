@@ -8,23 +8,25 @@
 </p>
 
 <p align="center">
-⏳️ Light library to use Timer in Android. The library is implemented via Kotlin Coroutines and Kotlin Flows.
+⏳️ TimerFlow is a light library to use Timer functionality in Android. The library is implemented via Kotlin Coroutines and Kotlin Flows.
 </p>
 
 # Setup
 
-Add it in your root **build.gradle** at the end of repositories:
-```groovy
-allprojects {
+Add the maven library bucket to the `dependencyResolutionManagement.repositories` block in `settings.gradle.kts` file as follows:
+```kotlin
+dependencyResolutionManagement {
+  ...
   repositories {
-    maven { url 'https://jitpack.io' }
+    ...
+    maven("https://jitpack.io")
   }
 }
-```   
+```
 
-Include below dependency in build.gradle of application and sync it:
-```groovy
-implementation 'com.github.raheemadamboev:timer-flow:1.0.2'
+Install the library to the project in desired module's `build.gradle.kts` file. Replace `<current_version>` with the actual version:
+```kotlin
+implementation("com.github.raheemadamboev:timer-flow:<current_version>")
 ```
 
 # Implementation
@@ -77,13 +79,13 @@ timer.resume()
 timer.reset()
 ```
 
-**Set checkpoint time (default: 3 000) that you will get notified when it is reached. It is implemented via Kotlin Channel and received as Kotlin Flow. So you will only get notified once:**
+**Set checkpoint time (default: 3 000) so that you will get notified when it is reached. It is implemented via Kotlin Channel and received as Kotlin Flow. So you will only get notified once:**
 
 ```kotlin
 timer.timerCheckpoint = 2_500L
 
 lifecycleScope.launch {
-  timer.event.collectLatest { event ->
+  timer.event.collect { event ->
     when(event) {
       Started -> Unit // timer started
       Checkpoint -> Unit // checkpoint reached
@@ -117,17 +119,17 @@ timer.stop()
 
 # Demo
 
-Very simple Jetpack Compose demo. <a href="https://github.com/raheemadamboev/timer-flow/blob/master/app-debug.apk">Download demo</a>
+Very simple Jetpack Compose demo. <a href="https://github.com/raheemadamboev/timer-flow/blob/master/extra/app-debug.apk">Download demo</a>
 
-<img src="https://github.com/raheemadamboev/timer-flow/blob/master/banner.gif" alt="Italian Trulli" width="200" height="400">
+<img src="https://github.com/raheemadamboev/timer-flow/blob/master/extra/banner.gif" width="200" height="400">
 
 # Projects using this library
 
-**GoTest** 150 000+ downloads in <a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.gotest">Google Play Store</a>
+**GoTest** 250 000+ downloads in <a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.gotest">Google Play Store</a>
 
-**Buxgalteriya schyotlar rejasi** 20 000+ downloads in <a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.uzbekistanaccountingcode">Google Play Store</a>
+**Buxgalteriya schyotlar rejasi** 50 000+ downloads in <a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.uzbekistanaccountingcode">Google Play Store</a>
 
-**Irregular Verbs**  20 000+ downloads in <a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.irregularverbs">Google Play Store</a>
+**Irregular Verbs**  25 000+ downloads in <a href="https://play.google.com/store/apps/details?id=xyz.teamgravity.irregularverbs">Google Play Store</a>
 
 # License
 
