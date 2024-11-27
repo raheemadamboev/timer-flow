@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-⏳️ TimerFlow is a light library to use Timer functionality in Android. The library is implemented via Kotlin Coroutines and Kotlin Flows.
+⏳️ <b>TimerFlow</b> is a light library to use Timer functionality in Android. The library is implemented via Kotlin Coroutines and Kotlin Flows.
 </p>
 
 # Setup
