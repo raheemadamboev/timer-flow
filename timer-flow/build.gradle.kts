@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.library)
     alias(libs.plugins.kotlin)
-    `maven-publish`
+    id("maven-publish")
 }
 
 android {
@@ -22,7 +22,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = libs.versions.java.target.get()
+        jvmTarget = libs.versions.jvm.target.get()
     }
 
     packaging {
@@ -46,15 +46,15 @@ dependencies {
     implementation(libs.coroutines.android)
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
-                from(components["release"])
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.raheemadamboev"
+            artifactId = "timer-flow"
+            version = "1.1.3"
 
-                groupId = "com.github.raheemadamboev"
-                artifactId = "timer-flow"
-                version = "1.1.2"
+            afterEvaluate {
+                from(components["release"])
             }
         }
     }
