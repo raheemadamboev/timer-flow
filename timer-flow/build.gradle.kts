@@ -51,7 +51,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.raheemadamboev"
             artifactId = "timer-flow"
-            version = "1.1.3"
+            version = "1.0.4"
 
             afterEvaluate {
                 from(components["release"])
