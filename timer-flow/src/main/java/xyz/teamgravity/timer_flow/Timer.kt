@@ -19,10 +19,37 @@ class Timer {
     private companion object {
         const val DEFAULT_TIMER_DURATION = 10_000L
         const val DEFAULT_TIMER_CHECKPOINT = 3_000L
+        const val DEFAULT_TIMER_INTERVAL = 200L
     }
 
+    /**
+     * Controls the duration of the timer, measured in milliseconds.
+     *
+     * Ensure this value is a positive integer. If not specified, it defaults to [DEFAULT_TIMER_DURATION].
+     */
     var timerDuration: Long = DEFAULT_TIMER_DURATION
+
+    /**
+     * Defines a checkpoint in milliseconds. An [event] is emitted a single time when the timer reaches this value.
+     *
+     * It is crucial that this checkpoint occurs before the timer completes. Therefore,
+     * `timerCheckpoint` must be a positive integer and satisfy the condition:
+     * `timerCheckpoint < timerDuration`.
+     *
+     * Defaults to [DEFAULT_TIMER_CHECKPOINT].
+     */
     var timerCheckpoint: Long = DEFAULT_TIMER_CHECKPOINT
+
+    /**
+     * The interval in milliseconds at which timer updates are emitted.
+     *
+     * This value determines how frequently the timer provides updates via [time], which can be used to refresh a UI displaying the
+     * remaining time.
+     *
+     * Must be a positive integer between 50 and 1000 (inclusive).
+     * Defaults to [DEFAULT_TIMER_INTERVAL].
+     */
+    var timerInterval: Long = DEFAULT_TIMER_INTERVAL
 
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
     private var job: Job? = null
@@ -53,10 +80,10 @@ class Timer {
 
             while (time.value > 0L) {
                 ensureActive()
-                delay(200L)
+                delay(timerInterval)
 
                 if (state.value == TimerState.Ticking) {
-                    _time.emit(time.value - 200L)
+                    _time.emit(time.value - timerInterval)
 
                     if (time.value <= timerCheckpoint) {
                         sendCheckpoint()
