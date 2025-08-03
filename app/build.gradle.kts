@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android)
     alias(libs.plugins.kotlin)
@@ -25,8 +27,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.jvm.target.get()
+    kotlin {
+        target {
+            compilerOptions {
+                jvmTarget = JvmTarget.JVM_17
+            }
+        }
     }
 
     buildFeatures {
@@ -44,6 +50,7 @@ dependencies {
 
     // timer flow
     implementation(projects.timerFlow)
+//    implementation("com.github.raheemadamboev:timer-flow:1.0.5")
 
     // compose
     implementation(platform(libs.compose))
